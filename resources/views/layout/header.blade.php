@@ -1,11 +1,13 @@
-<header class="bg-blue-200 shadow">
-    <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center">
-            <nav class="hidden md:block">
-               <h1 class="text-2xl font-bold">
-                Jabu Test Task
-                </h1>
-            </nav>
+<header class="bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
+    <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <div class="text-white font-bold text-xl">
+           Jabu Tesk Task
         </div>
-    </div>  
+        <div>
+            <a href="{{route('logout')}}" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded inline-block">
+                Logout
+            </a>
+
+        </div>
+    </nav>
 </header>
