@@ -12,8 +12,10 @@ class Task extends Model
     protected $fillable = [
         'title',
         'description',
-        'due_date',
-        'frequency',
+        'task_type',
+        'days_of_week',
+        'date_of_month',
+        'month_of_year',
         'iteration_start_date',
         'iteration_end_date',
         'iteration_count',

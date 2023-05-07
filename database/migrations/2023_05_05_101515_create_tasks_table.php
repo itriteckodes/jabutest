@@ -13,11 +13,13 @@ return new class extends Migration {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('task_type');
+            $table->string('days_of_week')->nullable();
+            $table->string('date_of_month')->nullable();
+            $table->string('month_of_year')->nullable();
             $table->text('description')->nullable();
-            $table->dateTime('due_date');
-            $table->enum('frequency', ['Daily', 'Weekly', 'Monthly', 'Yearly']);
-            $table->dateTime('iteration_start_date');
-            $table->dateTime('iteration_end_date')->nullable();
+            $table->date('iteration_start_date')->nullable();
+            $table->date('iteration_end_date')->nullable();
             $table->integer('iteration_count')->nullable();
             $table->foreignId('task_group_id')->nullable();
             $table->boolean('completed')->default(false);

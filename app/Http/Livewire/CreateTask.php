@@ -10,34 +10,64 @@ use Livewire\Component;
 class CreateTask extends Component
 {
 
+    public $frequencies = [
+        ['id' => 'daily', 'text' => 'Daily'],
+        ['id' => 'weekly', 'text' => 'Weekly'],
+        ['id' => 'monthly', 'text' => 'Monthly'],
+        ['id' => 'yearly', 'text' => 'Yearly'],
+    ];
+
+    public $daysofweek = [
+        ['id' => 'Monday', 'text' => 'Monday'],
+        ['id' => 'Tuesday', 'text' => 'Tuesday'],
+        ['id' => 'Wednesday', 'text' => 'Wednesday'],
+        ['id' => 'Thursday', 'text' => 'Thursday'],
+        ['id' => 'Friday', 'text' => 'Friday'],
+        ['id' => 'Saturday', 'text' => 'Saturday'],
+        ['id' => 'Sunday', 'text' => 'Sunday'],
+    ];
+    public $daysofMonth = [];
     public $title;
     public $description;
-    public $due_date;
+    public $taskType = 'daily';
+    public $selectedDays = [];
+    public $selectedDate;
+    public $selectedMonth;
+    public $iterationType = 'dateRange';
+    public $startDate;
+    public $endDate;
 
-    public $frequency;
-    public $iteration_start_date;
-    public $iteration_end_date;
-    public $iteration_count;
+    public $noOfIterations;
     public $task_group_id;
     public $task_groups;
 
+
     public function mount()
     {
+        for ($i = 1; $i <= 31; $i++) {
+            $this->daysofMonth[] = [
+                'id' => $i,
+                'text' => $i,
+            ];
+        }
         $this->getTaskGroupsProperty();
     }
 
 
     public function create()
     {
-        
+        $this->validateInputs();
+
         $task = new Task();
         $task->title = $this->title;
         $task->description = $this->description;
-        $task->due_date = Carbon::createFromFormat('Y-m-d H:i', $this->due_date . ' 00:00');
-        $task->frequency = $this->frequency;
-        $task->iteration_start_date = Carbon::createFromFormat('Y-m-d H:i', $this->iteration_start_date . ' 00:00');
-        $task->iteration_end_date = $this->iteration_end_date ? Carbon::createFromFormat('Y-m-d H:i', $this->iteration_end_date . ' 00:00') : null;
-        $task->iteration_count = $this->iteration_count;
+        $task->task_type = $this->taskType;
+        $task->days_of_week = json_encode($this->selectedDays);
+        $task->date_of_month = $this->selectedDate;
+        $task->month_of_year = $this->selectedMonth;
+        $task->iteration_start_date = Carbon::parse($this->startDate) ;
+        $task->iteration_end_date = Carbon::parse($this->endDate);
+        $task->iteration_count = $this->noOfIterations;
         $task->task_group_id = $this->task_group_id;
         $task->save();
 
@@ -48,6 +78,50 @@ class CreateTask extends Component
     public function getTaskGroupsProperty()
     {
         $this->task_groups = TaskGroup::orderBy('name', 'asc')->get()->toArray();
+    }
+
+    private function validateInputs()
+    {
+        $rules = [
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'taskType' => 'required|string|in:once,daily,weekly,monthly,yearly',
+            'selectedDays' => 'nullable|array',
+            'selectedDate' => 'nullable|integer|min:1|max:31',
+            'selectedMonth' => 'nullable|date_format:d-m-Y',
+            'iterationType' => 'required|string|in:dateRange,numIterations',
+            'task_group_id' => 'nullable|exists:task_groups,id',
+        ];
+
+        // add conditional rules based on frequency and iteration type
+        if ($this->taskType == 'weekly') {
+            $rules['selectedDays'] = 'required|array|min:1|max:7';
+        }
+
+        if ($this->taskType == 'monthly') {
+            $rules['selectedDate'] = 'required|integer|min:1|max:31';
+        }
+
+        if ($this->taskType == 'yearly') {
+            $rules['selectedMonth'] = 'required|date_format:d-m-Y';
+        }
+
+        if($this->iterationType == 'dateRange') {
+            $rules['startDate'] = 'required|date_format:d-m-Y';
+            $rules['endDate'] = 'required|date_format:d-m-Y';
+        }
+        if($this->iterationType == 'numIterations'){
+            $rules['noOfIterations']  = 'required|integer|min:1';
+        }
+         $messages = [
+            'selectedDays.min' => 'Please select at least one day of the week.',
+            'selectedDays.max' => 'You can select up to 7 days of the week.',
+            'selectedDate.min' => 'Please select a valid date of the month.',
+            'selectedDate.max' => 'Please select a valid date of the month.',
+            'selectedMonth.date_format' => 'Please select a valid date of the year.',
+        ];
+        $this->validate($rules, [], $messages);
+
     }
     public function render()
     {
