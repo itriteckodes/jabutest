@@ -10,7 +10,6 @@ use Livewire\Component;
 class PendingTasks extends Component
 {
     public $tasks = [];
-
     public function mount()
     {
         $this->loadTasks();
@@ -58,6 +57,6 @@ class PendingTasks extends Component
 
     public function render()
     {
-        return view('livewire.pending-tasks');
+        return view('livewire.task.pending-tasks');
     }
 }

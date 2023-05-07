@@ -17,7 +17,7 @@ use function GuzzleHttp\Promise\task;
 */
 Route::view('login', 'auth.login')->name('login');
 Route::post('authenticate', [AuthController::class, 'login'])->name('authenticate');
-Route::view('/', 'taskgroup.index')->name('taskgroup');
-Route::view('/group/create', 'taskgroup.create')->name('taskgroup.create');
+Route::view('/', 'main')->name('taskgroup');
+Route::view('/group/create', 'taskgroup-create')->name('taskgroup.create');
 Route::view('/task/create', 'task.create')->name('task.create');
 Route::view('/task/pending', 'task.pending-task')->name('task.pending-task');

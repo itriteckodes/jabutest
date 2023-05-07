@@ -1,26 +1,57 @@
 <?php
-
+ 
 namespace App\Http\Livewire;
-
+ 
+use App\Models\Post;
 use App\Models\TaskGroup;
+use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
-
-class TaskGroups extends Component
+ 
+class TaskGroups extends Component implements Tables\Contracts\HasTable
 {
-    public $task_groups;
-
-    public function mount()
+    use Tables\Concerns\InteractsWithTable;
+ 
+    protected function getTableQuery(): Builder
     {
-        $this->loadTaskGroups();
+        return TaskGroup::query();
     }
-
-    public function loadTaskGroups()
+ 
+    protected function getTableColumns(): array
     {
-        $this->task_groups = TaskGroup::orderBy('name', 'asc')->get();
+        return [
+            TextColumn::make('name')->sortable()->searchable(),
+            TextColumn::make('description')->sortable()->searchable()
+        ];
     }
-
-    public function render()
+ 
+    protected function getTableEmptyStateIcon(): ?string 
     {
-        return view('livewire.task-groups');
+        return 'heroicon-o-bookmark';
+    }
+ 
+    protected function getTableEmptyStateHeading(): ?string
+    {
+        return 'No task groups yet';
+    }
+ 
+    protected function getTableEmptyStateDescription(): ?string
+    {
+        return 'You may create a post using the button below.';
+    }
+ 
+    protected function getTableEmptyStateActions(): array
+    {
+        return [
+          
+        ];
+    } 
+ 
+    public function render(): View
+    {
+        return view('livewire.task-group.task-groups');
     }
 }

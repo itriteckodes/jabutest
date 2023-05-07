@@ -22,6 +22,6 @@ class CreateTaskGroup extends Component
 
     public function render()
     {
-        return view('livewire.create-task-group');
+        return view('livewire.task-group.create-task-group');
     }
 }

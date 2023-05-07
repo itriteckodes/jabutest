@@ -42,7 +42,7 @@ class CreateTask extends Component
         $task->save();
 
         $this->reset();
-        $this->getTaskGroupsProperty;
+        $this->getTaskGroupsProperty();
     }
 
     public function getTaskGroupsProperty()
@@ -51,6 +51,6 @@ class CreateTask extends Component
     }
     public function render()
     {
-        return view('livewire.create-task');
+        return view('livewire.task.create-task');
     }
 }
