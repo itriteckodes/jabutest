@@ -8,7 +8,7 @@
             <nav class="flex -mb-px space-x-4">
                 <a aria-current="page" x-on:click="activeTab = 1"
                     :class="activeTab === 1 ? activeClass : inactiveClass">
-                    Task Group
+                    Task List
                 </a>
                 <a aria-current="page" x-on:click="activeTab = 2"
                     :class="activeTab === 2 ? activeClass : inactiveClass">
@@ -16,19 +16,21 @@
                 </a>
                 <a aria-current="page" x-on:click="activeTab = 3"
                     :class=" activeTab === 3 ? activeClass : inactiveClass">
-                    Task List
+                    Task Group
                 </a>
             </nav>
 
         </div>
         <div x-show="activeTab === 1">
-            <livewire:task-groups />
+            <livewire:pending-tasks />
+
         </div>
         <div x-show="activeTab === 2">
             <livewire:create-task />
         </div>
         <div x-show="activeTab === 3">
-            <livewire:pending-tasks />
+            <livewire:task-groups />
+
         </div>
     </div>
 </div>
