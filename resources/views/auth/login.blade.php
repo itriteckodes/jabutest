@@ -20,12 +20,12 @@
                 <div class="max-w-md w-full mx-auto">
                     <div class="bg-gray-100 shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div class="mb-4">
-                            <label class="block text-gray-700 font-bold mb-2" for="username">
-                                Username
+                            <label class="block text-gray-700 font-bold mb-2" for="email">
+                                Email
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="username" type="text" placeholder="Enter your username" />
+                                id="email" name="email" type="text" placeholder="Enter your email" />
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 font-bold mb-2" for="password">
@@ -33,7 +33,7 @@
                             </label>
                             <input
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="password" type="password" placeholder="**********" />
+                                id="password" type="password" name="password" placeholder="**********" />
                         </div>
                         <div class="flex items-center justify-between">
                             <button
@@ -41,10 +41,6 @@
                                 type="submit">
                                 Sign In
                             </button>
-                            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                                href="#">
-                                Register
-                            </a>
                         </div>
                     </div>
                 </div>
