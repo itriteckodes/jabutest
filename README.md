@@ -45,16 +45,23 @@ Start the local development server
 
 You can now access the server at http://localhost:8000
 
-**TL;DR command list**
+# Design snippets
 
-    git clone [Repository url]
-    cd [Repository folder]
-    composer install
-    cp .env.example .env
-    php artisan key:generate
-    php artisan migrate --seed
-    composer check # to fix sintax
-    
+Email: user@test.com
+Password: 1234
+Login:
+![screenshot-127 0 0 1_8000-2023 05 08-15_26_21](https://user-images.githubusercontent.com/61405290/236801416-55651ffd-591d-4392-8959-b78e351296d5.png)
+
+Task Group Creation:
+![screenshot-127 0 0 1_8000-2023 05 08-15_23_22](https://user-images.githubusercontent.com/61405290/236801948-59707624-ff6a-4fb4-b0ad-d064f270863d.png)
+
+Task Creation:
+![screenshot-127 0 0 1_8000-2023 05 08-15_25_07](https://user-images.githubusercontent.com/61405290/236801980-241cd5a5-b7a5-4a3e-aff0-c46ab34f7ba6.png)
+
+Task Listing:
+![screenshot-127 0 0 1_8000-2023 05 08-15_25_52](https://user-images.githubusercontent.com/61405290/236802001-8fdb0635-436c-4b93-a47b-213f1b159f4f.png)
+
+
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
 
     php artisan migrate
@@ -72,11 +79,6 @@ Run the database seeder and you're done
 
     php artisan migrate:refresh
 
-
-
-# Design snippets
-![screenshot-127 0 0 1_8000-2023 05 08-15_26_21](https://user-images.githubusercontent.com/61405290/236801416-55651ffd-591d-4392-8959-b78e351296d5.png)
-    
 
 ## Environment variables
 
