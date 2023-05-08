@@ -23,6 +23,10 @@ class Task extends Model
         'task_group_id'
     ];
 
+    protected $casts = [
+        'completed' => 'boolean',
+    ];
+
     public function tasks(): HasMany
     {
 

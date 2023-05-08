@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Livewire\PendingTasks;
 use App\Models\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -9,16 +10,17 @@ use Tests\TestCase;
 
 class CompleteTaskTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function testMarkAsCompleted(): void
+    public function testCompleteTask()
     {
         $task = Task::factory()->create();
 
-        $this->assertFalse($task->completed); // Ensure that the task is initially not completed
-        $task->completed = true;
-        $task->save();
-        $this->assertTrue($task->fresh()->completed ? true : false);
+        // Create a PendingTasks component instance
+        $component = new PendingTasks();
+
+        // Call the completeTask method
+        $component->markAsCompleted($task->id);
+
+        // Assert that the task is marked as completed
+        $this->assertTrue($task->fresh()->completed);
     }
 }

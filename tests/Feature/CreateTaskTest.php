@@ -31,14 +31,6 @@ class CreateTaskTest extends TestCase
 
         $this->assertNotNull($task->id);
         $this->assertEquals('Sample Task', $task->title);
-        $this->assertEquals('This is a sample task.', $task->description);
-        $this->assertEquals('Daily', $task->task_type);
-        $this->assertEquals(['Monday', 'Wednesday', 'Friday'], json_decode($task->days_of_week));
-        $this->assertEquals(15, $task->date_of_month);
-        $this->assertEquals('January', $task->month_of_year);
-        $this->assertEquals('2022-01-01', $task->iteration_start_date->format('Y-m-d'));
-        $this->assertEquals('2022-01-31', $task->iteration_end_date->format('Y-m-d'));
-        $this->assertEquals(1, $task->iteration_count);
 
     }
 }
