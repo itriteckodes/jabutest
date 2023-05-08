@@ -13,8 +13,8 @@ This is a task management system. The system allows users to create periodic tas
 
 - Laravel
 - Livewire
-- Tailwind css
-- wire ui
+- Tailwind CSS
+- Wire Ui
 
 
 ## Installation
