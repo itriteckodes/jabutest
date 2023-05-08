@@ -23,21 +23,24 @@ class PendingTasks extends Component
         $nextMonth = Carbon::now()->addMonth();
         $nextYear = Carbon::now()->addYear();
 
-        // $this->tasks = Task::where('completed', false)->get()
-        //     ->groupBy(function ($task) use ($today, $tomorrow, $nextWeek, $nextMonth, $nextYear) {
-        //         $due_date = Carbon::createFromFormat('Y-m-d H:i:s', $task->iteration_start_date);
-        //         if ($due_date->eq($today)) {
-        //             return 'Tasks Today';
-        //         } elseif ($due_date->eq($tomorrow)) {
-        //             return 'Tasks Tomorrow';
-        //         } elseif ($due_date->gte($nextWeek) && $due_date->lt($nextMonth)) {
-        //             return 'Tasks Next Week';
-        //         } elseif ($due_date->gte($nextMonth) && $due_date->lt($nextYear)) {
-        //             return 'Tasks in the Near Future';
-        //         } else {
-        //             return 'Tasks in the Future';
-        //         }
-        //     }, $preserveKeys = true);
+        $this->tasks = Task::where('completed', false)
+            ->orderBy('iteration_start_date', 'asc')
+            ->get()
+            ->groupBy(function ($task) use ($today, $tomorrow, $nextWeek, $nextMonth, $nextYear) {
+                $due_date = Carbon::parse($task->iteration_start_date);
+
+                if ($due_date->eq($today)) {
+                    return 'Tasks Today';
+                } elseif ($due_date->eq($tomorrow)) {
+                    return 'Tasks Tomorrow';
+                } elseif ($due_date->gte($nextWeek) && $due_date->lt($nextMonth)) {
+                    return 'Tasks Next Week';
+                } elseif ($due_date->gte($nextMonth) && $due_date->lt($nextYear)) {
+                    return 'Tasks in the Near Future';
+                } else {
+                    return 'Tasks in the Future';
+                }
+            }, $preserveKeys = true);
 
         $this->tasks = new Collection($this->tasks);
 
