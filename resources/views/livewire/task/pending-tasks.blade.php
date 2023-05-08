@@ -21,10 +21,17 @@
                             @endif
                             <div class="text-gray-800 font-bold text-xl">{{ $task->title }}</div>
                         </div>
+                        @if ($task->completed)
                         <button wire:click="markAsCompleted({{ $task->id }})"
-                            class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-300">
+                            class="bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-300">
                             Mark as Completed
                         </button>
+                        @else
+                        <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-500 text-white">
+                            Task Completed
+                          </span>
+                        @endif
+                        
                     </div>
                     <div class="text-gray-600 mb-4">{{ $task->description }}</div>
                     <div class="text-gray-700">Iterations: {{ $task->iteration_count }}</div>
