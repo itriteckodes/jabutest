@@ -23,12 +23,8 @@ class PendingTasks extends Component
         $nextMonth = Carbon::now()->addMonth();
         $nextYear = Carbon::now()->addYear();
 
-        $this->tasks = Task::where('completed', false)
-            ->orderBy('iteration_start_date', 'asc')
-            ->get()
-            ->groupBy(function ($task) use ($today, $tomorrow, $nextWeek, $nextMonth, $nextYear) {
+        $this->tasks = Task::all()->groupBy(function ($task) use ($today, $tomorrow, $nextWeek, $nextMonth, $nextYear) {
                 $due_date = Carbon::parse($task->iteration_start_date);
-
                 if ($due_date->eq($today)) {
                     return 'Tasks Today';
                 } elseif ($due_date->eq($tomorrow)) {

@@ -55,7 +55,6 @@ class CreateTask extends Component
     public function create()
     {
         $this->validateInputs();
-
         $task = new Task();
         $task->title = $this->title;
         $task->description = $this->description;
