@@ -9,6 +9,13 @@ This is a task management system. The system allows users to create periodic tas
 - Task listing: The application displays a list of tasks, organized by date. Tasks are grouped into "Tasks Today," "Tasks Tomorrow," "Tasks Next Week," "Tasks in the Near Future," and "Tasks in the Future."
 - Task completion: Users can mark a task as completed.
 
+## Technologies Used
+
+- Laravel
+- Livewire
+- Tailwind css
+- wire ui
+
 
 ## Installation
 
