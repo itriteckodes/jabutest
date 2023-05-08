@@ -1,7 +1,9 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-    content: ['./resources/**/*.blade.php', './vendor/filament/**/*.blade.php'],
+    content: ['./resources/**/*.blade.php', './vendor/filament/**/*.blade.php', './vendor/wireui/wireui/resources/**/*.blade.php',
+    './vendor/wireui/wireui/ts/**/*.ts',
+    './vendor/wireui/wireui/src/View/**/*.php'],
     presets: [
         require('./vendor/wireui/wireui/tailwind.config.js')
     ],
