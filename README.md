@@ -1,11 +1,13 @@
 # Jabu Task Test
 
+This is a task management system. The system allows users to create periodic tasks(i.e Daily,weekly,monthly and yearly) and group them into task groups. The tasks can be viewed in a list, Pending tasks can be completed and organized by dates
 
+## Features
 
-## About Automated Attendance
-
-This Projects contains laravel code for automated attendance system for educational institude.This project contains Admin Panel for administrator to have a global overview and maintaining records.Also this project contains Teacher panel to Add the course content for the students:
-
+- Creation of periodic tasks: Users can create tasks and define iteration duration  from date A to date B or for N iterations as well.
+- Task grouping: Users can create group and attach task to specific group.
+- Task listing: The application displays a list of tasks, organized by date. Tasks are grouped into "Tasks Today," "Tasks Tomorrow," "Tasks Next Week," "Tasks in the Near Future," and "Tasks in the Future."
+- Task completion: Users can mark a task as completed.
 
 
 ## Installation
@@ -32,9 +34,9 @@ Generate a new application key
 
     php artisan key:generate
 
-Run the database migrations (**Set the database connection in .env before migrating**)
+Run the database migrations (**Set the database connection in .env before migrating**) seed the database as well to create raw tasks
 
-    php artisan migrate
+    php artisan migrate --seed
 
 
 Start the local development server
@@ -50,7 +52,7 @@ You can now access the server at http://localhost:8000
     composer install
     cp .env.example .env
     php artisan key:generate
-    php artisan migrate
+    php artisan migrate --seed
     composer check # to fix sintax
     
 **Make sure you set the correct database connection information before running the migrations** [Environment variables](#environment-variables)
@@ -72,7 +74,9 @@ Run the database seeder and you're done
 
 
 
-# Code overview
+# Design snippets
+
+    
 
 ## Environment variables
 
