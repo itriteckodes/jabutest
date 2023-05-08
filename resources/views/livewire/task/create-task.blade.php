@@ -21,12 +21,12 @@
 
                     <div class="col-span-6 {{ $taskType == 'weekly' ? 'block' : 'hidden' }}">
                         <x-select label="Days of week" placeholder="Select days of week" :options="$daysofweek"
-                            wire:mode='selectedDays' option-label="text" option-value="id" multiselect />
+                            wire:model='selectedDays' option-label="text" option-value="id" multiselect />
                     </div>
 
                     <div class="col-span-6 {{ $taskType == 'monthly' ? 'block' : 'hidden' }}">
                         <x-select label="Date of month" placeholder="Select date of month" :options="$daysofMonth"
-                            wire:mode='selectedDate' option-label="text" option-value="id" />
+                            wire:model='selectedDate' option-label="text" option-value="id" />
                     </div>
                     <div class="col-span-6 {{ $taskType == 'yearly' ? 'block' : 'hidden' }}">
                         <x-datetime-picker label="Date of year" parse-format="DD-MM-YYYY" without-tips=true

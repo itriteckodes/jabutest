@@ -15,6 +15,7 @@
     </head>
 
     <body class="antialiased">
+        <x-notifications z-index="z-50" />
         {{ $slot }}
         @livewireScripts
 
