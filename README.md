@@ -75,7 +75,7 @@ Run the database seeder and you're done
 
 
 # Design snippets
-
+![screenshot-127 0 0 1_8000-2023 05 08-15_26_21](https://user-images.githubusercontent.com/61405290/236801416-55651ffd-591d-4392-8959-b78e351296d5.png)
     
 
 ## Environment variables
